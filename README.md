@@ -1,7 +1,52 @@
-# Python & Flask template
-This is a template to run Python with Flask on [mogenius](https://mogenius.com). We use it to deploy the framework from our service library. If you have a Flask project that you want to run on mogenius feel free to add this template to your project.
-## Deployment on mogenius
-[mogenius](https://mogenius.com) is the easiest way to run a Flask application in the cloud. It's free, so [sign up now](https://studio.mogenius.com/user/registration) and deploy your app with mogenius.
-- Read the docs: [docs.mogenius.com](https://docs.mogenius.com)
-- Join our Discord community: [discord.gg/WSxnFHr4qm](https://discord.gg/WSxnFHr4qm)
-- Submit your ideas: [feedback.mogenius.com](https://feedback.mogenius.com)
+# Paginación de API REST
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Kaggle](https://img.shields.io/badge/Kaggle-035a7d?style=for-the-badge&logo=kaggle&logoColor=white)
+
+Este proyecto tiene como finalidad exponer los datos de una base de datos de numerosos registros mediante una API que pueda paginar los resultados. La API fue desarrollada en Flask y se creó una base PostgreSQL poblada con un dataset de [Kaggle](https://www.kaggle.com/datasets/kaggle/sf-salaries)
+
+## Estructura del proyecto
+
+```bash
+.
+├── Dockerfile
+├── exceptions.py
+├── extensions.py
+├── models.py
+├── README.md
+├── requirements.txt
+├── schemas.py
+├── server.py
+├── template.env # Se debe renombrar a '.env' e indicar las variables de entorno
+└── utils.py
+```
+
+## Configuración del entorno e instalación de dependencias
+
+Se debe usar el gestor de dependencias [pip](https://pip.pypa.io/en/stable/):
+
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python3 server.py
+```
+
+## Ejecución con Docker
+
+Realizamos build de la imagen partiendo de una imagen de Python
+
+```bash
+docker build -t salaries-api .
+docker run -it salaries-api /bin/bash
+```
+
+Una vez dentro del contenedor ejecutamos
+
+```bash
+python3 server.py
+```
