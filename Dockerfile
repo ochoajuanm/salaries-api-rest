@@ -10,4 +10,4 @@ EXPOSE 1337
 
 USER 1000
 
-CMD [ "python", "./app.py" ]
+CMD [ "python", "./server.py" ]

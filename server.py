@@ -7,14 +7,14 @@ from models import Salary
 from schemas import SalarySchema
 from utils import build_link_header, validate_per_page
 
-app = Flask(__name__)
+server = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = config('DATABASE_URI')
+server.config["SQLALCHEMY_DATABASE_URI"] = config('DATABASE_URI')
 
-db.init_app(app)
+db.init_app(server)
 
 
-@app.route("/salaries")
+@server.route("/salaries")
 def salaries():
     # process query parameters
     page = request.args.get("page", 1, type=int)
@@ -47,7 +47,7 @@ def salaries():
     return jsonify(results), 200, link_header
 
 
-@app.errorhandler(APIError)
+@server.errorhandler(APIError)
 def handle_exception(err):
     """Return custom JSON when APIError or its children are raised"""
     # credit:
@@ -55,9 +55,9 @@ def handle_exception(err):
     if len(err.args) > 0:
         response["message"] = err.args[0]
     # Add some logging so that we can monitor different types of errors
-    app.logger.error("{}: {}".format(err.description, response["message"]))
+    server.logger.error("{}: {}".format(err.description, response["message"]))
     return jsonify(response), err.code
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=1337)
+    server.run(host='0.0.0.0', port=1337)
