@@ -1,3 +1,5 @@
+import os
+
 from decouple import config
 from flask import Flask, jsonify, request
 
@@ -9,7 +11,7 @@ from utils import build_link_header, validate_per_page
 
 server = Flask(__name__)
 
-server.config["SQLALCHEMY_DATABASE_URI"] = config('DATABASE_URI')
+server.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URI']
 
 db.init_app(server)
 
@@ -40,7 +42,7 @@ def salaries():
     }
 
     # paginated link headers
-    base_url = config('BASE_URL')
+    base_url = os.environ['BASE_URL']
     link_header = build_link_header(
         query=salaries, base_url=base_url, per_page=per_page
     )
@@ -60,4 +62,4 @@ def handle_exception(err):
 
 
 if __name__ == '__main__':
-    server.run(host='0.0.0.0', port=1337)
+    server.run(host="0.0.0.0", port=1337)

@@ -42,7 +42,7 @@ Realizamos build de la imagen partiendo de una imagen de Python
 
 ```bash
 docker build -t salaries-api .
-docker run -p 80:1337 -it salaries-api /bin/bash
+docker run -p 1337:1337 -it salaries-api /bin/bash
 ```
 
 Una vez dentro del contenedor ejecutamos
@@ -51,4 +51,4 @@ Una vez dentro del contenedor ejecutamos
 python3 server.py
 ```
 
-Finalmente podemos ejecutar http://127.0.0.1:80/salaries?page=1&per-page=100 y veremos los resultados
+Finalmente podemos ejecutar http://127.0.0.1:1337/salaries?page=1&per-page=100 y veremos los resultados

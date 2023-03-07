@@ -1,0 +1,28 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore Python virtual environment files
+venv/
+.env
+
+# Ignore Flask instance folders
+instance/
+
+# Ignore Docker files
+Dockerfile
+docker-compose.yml
+
+# Ignore test files
+tests/
+
+# Ignore any other unnecessary files or directories
+.git
+.idea
+.vscode
+*.log
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info/

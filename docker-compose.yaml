@@ -1,0 +1,9 @@
+version: '3'
+services:
+  api:
+    image: api-salaries:v1
+    ports:
+      - "1337:1337"
+    environment:
+      - DATABASE_URI=postgresql://postgres:password@localhost:5433/mydatabase
+      - BASE_URL=http://127.0.0.1:1337/salaries
